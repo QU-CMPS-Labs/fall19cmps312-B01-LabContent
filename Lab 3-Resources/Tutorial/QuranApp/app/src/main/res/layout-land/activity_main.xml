@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="10dp">
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:id="@+id/main_layout"
+
+    >
 
     <!--Through XML you can set the background-->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/quran_image_height"
-        android:contentDescription="@string/todo"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:padding="10dp" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_height="match_parent"
+            android:layout_width="210dp"
+            android:padding="10dp"
+            android:src="@drawable/holy_quran_cover"
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+             />
+    </LinearLayout>
+
+    <View
+        android:layout_width="5dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:id="@+id/view" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,20 +45,17 @@
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/name"
+                    android:text="Name : "
                     android:textAppearance="?android:textAppearanceLarge"
-
-
                     />
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00A73D3D"
-                    android:fontFamily="@font/arbutus_slab"
-                    android:text="@string/the_holy_quran"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:text="THE HOLY QURAN"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -58,15 +67,17 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/year"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:text="Year"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    />
 
                 <TextView
                     android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_1998"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:text="1998"
+                    android:textAppearance="?android:textAppearanceLarge"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -78,10 +89,15 @@
                     android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/chapters"
+                    android:text="Chapters"
                     android:textAppearance="?android:textAppearanceLarge"
-
+                    
                     />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/colorPrimary" />
+
 
                 <TextView
                     android:id="@+id/chapters"
@@ -89,29 +105,12 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="@string/chapters_value_chapters_value"
-                    android:textAppearance="?android:textAppearanceMedium" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/colorPrimary" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/colorPrimary" />
+                    android:text="Chapters_Value Chapters_Value "
+                    android:textAppearance="?android:textAppearanceMedium"
+                    />
 
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/colorPrimary" />
 
 
 </LinearLayout>

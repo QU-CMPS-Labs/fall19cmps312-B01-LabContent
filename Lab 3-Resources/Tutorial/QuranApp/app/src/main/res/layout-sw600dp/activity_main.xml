@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="10dp">
+    android:paddingLeft="10dp"
+    android:id="@+id/main_layout"
+    >
 
     <!--Through XML you can set the background-->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/quran_image_height"
-        android:contentDescription="@string/todo"
+        android:padding="10dp"
 
-        android:padding="10dp" />
+        android:contentDescription="@string/todo" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -22,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -37,16 +38,15 @@
                     android:textAppearance="?android:textAppearanceLarge"
 
 
-                    />
+                   />
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00A73D3D"
-                    android:fontFamily="@font/arbutus_slab"
                     android:text="@string/the_holy_quran"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:textAppearance="?android:textAppearanceLarge"
+                   />
             </LinearLayout>
 
             <LinearLayout
@@ -59,14 +59,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/year"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:textAppearance="?android:textAppearanceLarge"
+                   />
 
                 <TextView
                     android:id="@+id/year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/_1998"
-                    android:textAppearance="?android:textAppearanceLarge" />
+                    android:textAppearance="?android:textAppearanceLarge"
+                   />
             </LinearLayout>
 
             <LinearLayout
@@ -82,6 +84,11 @@
                     android:textAppearance="?android:textAppearanceLarge"
 
                     />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/colorPrimary" />
+
 
                 <TextView
                     android:id="@+id/chapters"
@@ -90,14 +97,8 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/chapters_value_chapters_value"
-                    android:textAppearance="?android:textAppearanceMedium" />
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@color/colorPrimary" />
-
+                    android:textAppearance="?android:textAppearanceMedium"
+                   />
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
@@ -108,10 +109,10 @@
     </ScrollView>
 
     <View
-        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:id="@+id/view" />
 
 
 </LinearLayout>

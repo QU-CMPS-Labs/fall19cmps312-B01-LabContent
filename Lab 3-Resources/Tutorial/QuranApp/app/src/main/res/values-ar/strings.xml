@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تطبيق القرآن</string>
+    <string name="chapters">سورة</string>
+    <string name="name">اسم :</string>
+    <string name="the_holy_quran">القران الكريم</string>
+    <string name="year">":عام "</string>
+
+    <string-array name="quran_chapters">
+        <item>البقره</item>
+        <item>العمران</item>
+        <item>سورة النساء</item>
+        <item>آل المائدة</item>
+    </string-array>
+
+
+</resources>
