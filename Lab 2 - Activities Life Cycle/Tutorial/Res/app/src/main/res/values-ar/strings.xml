@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Resources</string>
+    <string name="chapters">الفصل القرآن</string>
+    <string name="name">اسم</string>
+    <string name="the_holy_quran">القران الكريم</string>
+    <string name="year">عام :</string>
+
+    <string-array name="chapters_array">
+    <item>عام</item>
+    <item>عام</item>
+    <item>عام</item>
+    <item>عام</item>
+</resources>

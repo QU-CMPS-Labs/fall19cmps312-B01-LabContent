@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Resources</string>
+    <string name="name">Name :</string>
+    <string name="chapters">Chapters :</string>
+    <string name="year">Year :</string>
+    <string name="the_holy_quran">THE HOLY QURAN</string>
+
+    <string-array name="chapters_array">
+        <item>Al-Fatihah</item>
+        <item>Al-Baqarah</item>
+        <item>Al-Imran</item>
+        <item>An-Nisa</item>
+    </string-array>
+</resources>
