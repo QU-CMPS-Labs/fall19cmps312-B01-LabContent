@@ -51,6 +51,11 @@ public class Country implements Parcelable {
 
         countries.add(new Country("Qatar", R.drawable.qatar_flag, "Doha"));
         countries.add(new Country("UK", R.drawable.uk_flag, "London"));
+        countries.add(new Country("Germany", R.drawable.germany_flag, "Berlin")); countries.add(new Country("Qatar", R.drawable.qatar_flag, "Doha"));
+        countries.add(new Country("UK", R.drawable.uk_flag, "London"));
+        countries.add(new Country("Germany", R.drawable.germany_flag, "Berlin"));
+        countries.add(new Country("Qatar", R.drawable.qatar_flag, "Doha"));
+        countries.add(new Country("UK", R.drawable.uk_flag, "London"));
         countries.add(new Country("Germany", R.drawable.germany_flag, "Berlin"));
 
         return countries;

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Country> countries;
     private ListView listView;
-    private ArrayAdapter<Country> adapter;
+    private MyArrayAdapter adapter;
 
 
     @Override
@@ -29,26 +29,12 @@ public class MainActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
 
         //to create the adapter
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
+        adapter = new MyArrayAdapter(this, countries);
 
         //add the adapter to the list view
 
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Country country = countries.get(position);
-                Intent intent = new Intent(MainActivity.this, CountryDetails.class);
-
-                intent.putExtra("country", country);
-//                intent.putExtra("countries", countries);
-
-                startActivity(intent);
-
-
-            }
-        });
 
 
     }
