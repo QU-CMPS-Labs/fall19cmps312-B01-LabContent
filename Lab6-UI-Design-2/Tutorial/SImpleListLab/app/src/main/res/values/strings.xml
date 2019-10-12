@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListRecyclerView</string>
+    <string name="country_name">Country Name</string>
+    <string name="capital_city">Capital City</string>
+</resources>
