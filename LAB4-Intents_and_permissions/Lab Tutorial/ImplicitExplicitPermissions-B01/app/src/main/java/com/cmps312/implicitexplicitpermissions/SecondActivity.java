@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -20,7 +19,8 @@ public class SecondActivity extends AppCompatActivity {
 
     private TextView scoreTv;
     private int score;
-    public static final int READ_EXTERNAL_STORAGE_RQ = 101;
+    public static final int REQUEST_CODE = 101;
+    public String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +68,14 @@ public class SecondActivity extends AppCompatActivity {
         //2.1 I asked before and I was denied
         //===>Maybe the user did not understood why I needed this permission.
 
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[0])) {
             //show the explanation
             //dialog box explaining why we need this permission
             showRationaleDialog();
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    READ_EXTERNAL_STORAGE_RQ);
+                    permissions,
+                    REQUEST_CODE);
         }
 
     }
@@ -89,8 +89,8 @@ public class SecondActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         ActivityCompat.requestPermissions(SecondActivity.this,
-                                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                READ_EXTERNAL_STORAGE_RQ);
+                                permissions,
+                                REQUEST_CODE);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -104,11 +104,10 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == READ_EXTERNAL_STORAGE_RQ){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 sendEmail();
-            }
-            else{
+            } else {
                 Toast.makeText(this, "You should give use the permission to attach the image", Toast.LENGTH_SHORT).show();
             }
         }
@@ -117,13 +116,14 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void sendEmail() {
-        Intent intent = new Intent(Intent.ACTION_SENDTO);
-
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"abdulahi@qu.edu.qa", "bk1509189@qu.edu.qa"});
-        intent.putExtra(Intent.EXTRA_SUBJECT, "My First EMail From Android Intent");
-        intent.putExtra(Intent.EXTRA_TEXT, "Hello Mr. X , I am sending you this email because ....");
-        //we want to make an attachment
-        intent.setData(Uri.parse("mailto:"));
-        startActivity(Intent.createChooser(intent, "Choose the mailing client"));
+        Toast.makeText(this, " I can send", Toast.LENGTH_SHORT).show();
+//        Intent intent = new Intent(Intent.ACTION_SENDTO);
+//
+//        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"abdulahi@qu.edu.qa", "bk1509189@qu.edu.qa"});
+//        intent.putExtra(Intent.EXTRA_SUBJECT, "My First EMail From Android Intent");
+//        intent.putExtra(Intent.EXTRA_TEXT, "Hello Mr. X , I am sending you this email because ....");
+//        //we want to make an attachment
+//        intent.setData(Uri.parse("mailto:"));
+//        startActivity(Intent.createChooser(intent, "Choose the mailing client"));
     }
 }
