@@ -1,6 +1,5 @@
 package com.cmps312.students;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -28,12 +27,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
+        SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
 
+        //we get the editor
+        SharedPreferences.Editor editor = preferences.edit();
+        //bundle
+        editor.putString(USERNAME_KEY,usernameEdt.getText().toString().toLowerCase());
+        editor.putString(PASWORD_KEY,passwordEdt.getText().toString());
+
+        //we save it
+        editor.commit();
 
     }
 
     //Read from shared preferences
     public void loginUser(View view) {
+
+        SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
+
+        String savedUsername = preferences.getString(USERNAME_KEY,"");
+        String savedPassword = preferences.getString(PASWORD_KEY,"");
+
+        if(savedUsername.equals(usernameEdt.getText().toString().toLowerCase())
+                && savedPassword.equals(passwordEdt.getText().toString())){
+            Toast.makeText(this, "You are ok to access", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this, "Error, unable to login", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
