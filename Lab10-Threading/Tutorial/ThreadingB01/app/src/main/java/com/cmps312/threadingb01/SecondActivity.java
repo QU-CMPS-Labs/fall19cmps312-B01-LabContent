@@ -1,17 +1,18 @@
 package com.cmps312.threadingb01;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class SecondActivity extends AppCompatActivity {
 
-    TextView progressTv ;
-    ProgressBar progressBar ;
+    private TextView progressTv;
+    private ProgressBar progressBar;
+    private volatile boolean stopThread = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +24,17 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     public void startAsyncThread(View view) {
-
+        stopThread = false;
         DownoadProfilesAsync downoadProfilesAsync = new DownoadProfilesAsync();
         downoadProfilesAsync.execute(1000);
     }
 
+    public void stopThread(View view) {
+        stopThread = true;
+    }
 
-    class DownoadProfilesAsync extends AsyncTask<Integer, Integer , String>{
+
+    class DownoadProfilesAsync extends AsyncTask<Integer, Integer, String> {
 
         @Override
         protected void onPreExecute() {
@@ -39,14 +44,18 @@ public class SecondActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... integers) {
-            for (int i = 0; i <=10; i++) {
+            for (int i = 0; i <= 10; i++) {
+
+                if(stopThread)
+                    return "Interrupted before completion";
+
                 try {
                     Thread.sleep(integers[0]);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
-                publishProgress(i*10);
+                publishProgress(i * 10);
             }
             return "Finished Downloading";
         }
