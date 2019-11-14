@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.lang.ref.WeakReference;
+
 public class SecondActivity extends AppCompatActivity {
 
     private TextView progressTv;
@@ -25,7 +27,7 @@ public class SecondActivity extends AppCompatActivity {
 
     public void startAsyncThread(View view) {
         stopThread = false;
-        DownoadProfilesAsync downoadProfilesAsync = new DownoadProfilesAsync();
+        DownloadProfilesAsync downoadProfilesAsync = new DownloadProfilesAsync(this);
         downoadProfilesAsync.execute(1000);
     }
 
@@ -34,19 +36,38 @@ public class SecondActivity extends AppCompatActivity {
     }
 
 
-    class DownoadProfilesAsync extends AsyncTask<Integer, Integer, String> {
+    //step 1.
+
+    static class DownloadProfilesAsync extends AsyncTask<Integer, Integer, String> {
+
+        //step 2. Create a weak reference
+        private WeakReference<SecondActivity> weakReference;
+
+        //step 3. create the constructor that initializes the weakreference
+        public DownloadProfilesAsync(SecondActivity activity) {
+            weakReference = new WeakReference<>(activity);
+        }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressTv.setText("Ready to start the thread");
+
+            SecondActivity activity = weakReference.get();
+
+            if (activity != null && !activity.isFinishing())
+                activity.progressTv.setText("Ready to start the thread");
         }
 
         @Override
         protected String doInBackground(Integer... integers) {
-            for (int i = 0; i <= 10; i++) {
+            SecondActivity activity = weakReference.get();
 
-                if(stopThread)
+
+            for (int i = 0; i <= 10; i++) {
+                if (activity == null || activity.isFinishing())
+                    return null;
+
+                if (activity.stopThread)
                     return "Interrupted before completion";
 
                 try {
@@ -63,14 +84,22 @@ public class SecondActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            progressBar.setProgress(values[0]);
-            progressTv.setText(String.valueOf(values[0]));
+
+            SecondActivity activity = weakReference.get();
+            if (activity != null && !activity.isFinishing()) {
+                activity.progressBar.setProgress(values[0]);
+                activity.progressTv.setText(String.valueOf(values[0]));
+            }
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            progressTv.setText(s);
+            SecondActivity activity = weakReference.get();
+            if (activity != null && !activity.isFinishing()) {
+                activity.progressTv.setText(s);
+
+            }
         }
     }
 }
