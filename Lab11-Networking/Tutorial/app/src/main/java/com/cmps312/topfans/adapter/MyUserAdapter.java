@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cmps312.topfans.R;
 import com.cmps312.topfans.models.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,9 @@ public class MyUserAdapter extends RecyclerView.Adapter<MyUserAdapter.MyViewHold
         holder.nameTv.setText(users.get(position).getName().toString());
         holder.emailTv.setText(users.get(position).getEmail());
         holder.gender.setText(users.get(position).getGender());
+        Picasso.get()
+                .load(users.get(position).getPicture().getLarge())
+                .into(holder.userImage);
     }
 
     @Override
