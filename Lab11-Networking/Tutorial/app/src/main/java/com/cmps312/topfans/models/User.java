@@ -1,5 +1,7 @@
 package com.cmps312.topfans.models;
 
+import androidx.annotation.NonNull;
+
 public class User {
     private String gender;
     private String email;
@@ -38,7 +40,7 @@ public class User {
         this.email = email;
     }
 
-    public class Name{
+    public class Name {
         private String title;
         private String first;
         private String last;
@@ -66,8 +68,15 @@ public class User {
         public void setLast(String last) {
             this.last = last;
         }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return title + " " + first + " " + last;
+        }
     }
-    public class Picture{
+
+    public class Picture {
         private String large;
 
         public String getLarge() {

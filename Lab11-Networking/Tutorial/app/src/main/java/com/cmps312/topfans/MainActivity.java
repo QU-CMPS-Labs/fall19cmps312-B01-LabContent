@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.cmps312.topfans.adapter.MyUserAdapter;
 import com.cmps312.topfans.httpRequests.UsersClient;
 import com.cmps312.topfans.models.Result;
 import com.cmps312.topfans.models.User;
@@ -23,11 +26,22 @@ import static com.cmps312.topfans.httpRequests.UsersClient.BASE_URL;
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private MyUserAdapter adapter;
+    private ArrayList<User> users;
+
     public static final String TAG = "MYMainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
     }
 
     public void downloadUsers(View view) {
@@ -52,11 +66,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {
                 Result result = response.body();
-                ArrayList<User> users = result.getUsers();
-
-                User user = users.get(0);
-
-                Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show();
+                users = result.getUsers();
+                adapter = new MyUserAdapter(MainActivity.this, users);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
